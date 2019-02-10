@@ -33,18 +33,25 @@ $ serverless --version
 *IF YOU don't have yet an account on aws, you need an account to deploy lambda function
 **[check the link AWS Account ](https://aws.amazon.com/account/)**
 
-### Quickstart
+### Quickstart 
+
 ```
-$ pip install virtualenv
-$ virtualenv -p python3 layer1
+$ git clone https://github.com/zamirajaupaj/serverless-lambda-layer.git
+$ cd serverless-lambda-layer
 $ source layer1/bin/activate
-$ pip install pymssql
 $ pip freeze > requirements.txt
+
+```
+* Change the variables in paramter.yml
+
+```
+$ sls plugin install -n serverless-python-requirements
 $ sls deploy
 $ deactive
 $ sls remove 
 
 ```
+
 ### Lambda Function and Layer
 
 ![Architecture of Lambda layer](https://raw.githubusercontent.com/zamirajaupaj/serverless-lambda-layer/master/documentation/lambdaLayer.png)

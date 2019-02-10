@@ -32,7 +32,6 @@ provider:
 
 plugins:
   - serverless-python-requirements
-
 layers:
   SqlRdsLayer:
     path: layer1/lib/python3.6/site-packages
