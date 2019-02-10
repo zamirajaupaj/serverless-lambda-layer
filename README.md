@@ -42,7 +42,7 @@ $ source layer1/bin/activate
 $ pip freeze > requirements.txt
 
 ```
-* Change the variables in paramter.yml
+* Change the variables in params.yml
 
 ```
 $ sls plugin install -n serverless-python-requirements
