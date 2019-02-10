@@ -1,0 +1,116 @@
+
+service: LambadaBakcupSqlRds
+package:
+  individually: true
+  exclude:
+    - layer1/**
+custom: 
+  params: ${file(./params.yml)}
+
+provider:
+  name: aws
+  runtime: python3.6
+  stage: dev
+  region: ${self:custom.params.region}
+  deploymentBucket: ${self:custom.params.bucketName}
+  iamRoleStatements:
+    - Effect: "Allow"        
+      Action:
+        - s3:GetObject
+        - s3:ListBucket
+        - s3:PutObject
+        - s3:ListMultipartUploadParts
+        - s3:AbortMultipartUpload     
+      Resource: "*"
+
+    - Effect: "Allow"        
+      Action:
+        - ssm:GetParameters
+        - ssm:GetParameter 
+      Resource: "*"
+
+
+plugins:
+  - serverless-python-requirements
+
+layers:
+  SqlRdsLayer:
+    path: layer1/lib/python3.6/site-packages
+    description: "pymsslq dependencies"
+    compatibleRuntimes: 
+      - python3.6
+
+functions:
+
+  backup:
+    handler: function1/backup.lambda_handler
+    package:
+      exclude:
+        - function2/**
+        - function3/**
+    name: ${self:custom.params.backupLambdaName}
+    description: backup the sql database from rds to s3
+    vpc:
+      securityGroupIds:
+        - ${self:custom.params.securityGroupId1}
+        - ${self:custom.params.securityGroupId1}
+      subnetIds:
+        - ${self:custom.params.subnetId1}
+        - ${self:custom.params.subnetId2}
+    memorysize: 512
+    timeout: 10 
+  
+    layers: 
+    # the Name of Laye + LambdaLayer
+      - {Ref: SqlRdsLayerLambdaLayer}
+
+  restore:
+    handler: function2/restore.lambda_handler
+    package:
+      exclude:
+        - function1/**
+        - function3/**
+    name: ${self:custom.params.restoreLambdaName}
+    description: restore the sql database from s3 to rds
+    exclude:
+      - layer1
+    vpc:
+      securityGroupIds:
+        - ${self:custom.params.securityGroupId1}
+        - ${self:custom.params.securityGroupId1}
+      subnetIds:
+        - ${self:custom.params.subnetId1}
+        - ${self:custom.params.subnetId2}
+    memorysize: 512
+    timeout: 10 
+
+    layers: 
+    # the Name of Laye + LambdaLayer
+      - {Ref: SqlRdsLayerLambdaLayer}
+
+  create:
+    handler: function3/create.lambda_handler
+    package:
+      exclude:
+        - function1/**
+        - function2/**
+
+    name: ${self:custom.params.createDatabaseLambdaName}
+    description: create database and tables
+    vpc:
+      securityGroupIds:
+        # Security group that have acces in SQL RDS 
+        - ${self:custom.params.securityGroupId1}
+        - ${self:custom.params.securityGroupId1}
+
+        # private subnet witch be part RDS Database
+      subnetIds:
+        - ${self:custom.params.subnetId1}
+        - ${self:custom.params.subnetId2}
+    memorysize: 512
+    timeout: 10
+ 
+    layers: 
+    # the Name of Layer + LambdaLayer
+      - {Ref: SqlRdsLayerLambdaLayer}
+

@@ -1,0 +1,10 @@
+region: eu-west-1
+owner: Zamira Jaupaj
+bucketName: customBucketName
+backupLambdaName: backupSqlfromRDStoS3
+restoreLambdaName: restoreSqlfromS3toRDS
+createDatabaseLambdaName: creteSqlDataabse
+securityGroupId1: sg-xxxxxxxxxxxx
+securityGroupId2: sg-xxxxxxxxxxxx
+subnetId1: subnet-xxxxxxxxxxxxx
+subnetId2: subnet-xxxxxxxxxx

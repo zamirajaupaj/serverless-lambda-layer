@@ -1,0 +1,9 @@
+.libs_mssql/libsybdb-89a09a88.so.5.1.0,sha256=Jd4mOpGbDTzxKQOqrXKNX-8rSGmX-VHfCPtl_XNPo9A,557224
+.libspymssql/libsybdb-89a09a88.so.5.1.0,sha256=Jd4mOpGbDTzxKQOqrXKNX-8rSGmX-VHfCPtl_XNPo9A,557224
+_mssql.cpython-36m-x86_64-linux-gnu.so,sha256=vt-NpyskuXkb1cwmJnNAmig_ye2HfLB3DWmE7uHfBec,2172504
+pymssql-2.1.4.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+pymssql-2.1.4.dist-info/METADATA,sha256=spYK1PSmHnU4OAJ3ItMfu30OcpehW4Rdgmx2sdJCadA,16566
+pymssql-2.1.4.dist-info/RECORD,,
+pymssql-2.1.4.dist-info/WHEEL,sha256=d2ILPScH-y2UwGxsW1PeA2TT-KW0Git4AJ6LeOK8sQo,109
+pymssql-2.1.4.dist-info/top_level.txt,sha256=W2_l_jF4lZqb8rklQZPFv3fqpjCHrwfk_VbwsHuEhlE,15
+pymssql.cpython-36m-x86_64-linux-gnu.so,sha256=xq7XztooyeefjIPdKPEvhSBsmHBjYx2ty1T7jn-4sKs,1453664
